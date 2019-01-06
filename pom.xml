@@ -8,7 +8,7 @@
     <artifactId>vector_tile</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
+:q
     <repositories>
         <repository>
             <id>ECC</id>
