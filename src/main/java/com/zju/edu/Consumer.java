@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 public class Consumer {
-    public static void process(String path,String layerName) throws IOException {
+    public static void process(String path) throws IOException {
         Map<String,String> pbfAndFeature =new HashMap<>();
 
         Stream<Path> streamPath=Files.walk(Paths.get(URI.create(path)), FileVisitOption.values()).filter(
@@ -25,7 +25,7 @@ public class Consumer {
 
         AtomicInteger counter = new AtomicInteger(0);
         streamPath.map(filePath ->
-                ReadVector.getXYZAndContentfromPbf(filePath.toString(),layerName)
+                ReadVector.getXYZAndContentfromPbf(filePath.toString())
         ).forEach(x -> {
             if(pbfAndFeature.size()==500){
                 Pbf2Mysql.insert2pbfxy(pbfAndFeature);
