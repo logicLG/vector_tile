@@ -22,12 +22,13 @@ public class MoveToNewDir {
             String tileZ=null;
             for(String item : fileNames){
                 if(item.contains("EPSG")) {
-                    tileZ = item.split("_")[2].replaceAll("^(0+)", "");
+                    tileZ = String.valueOf((Integer.valueOf(item.split("_")[2].replaceAll("^(0+)", "")) + 1));
                     break;
                 }
             }
             String tileX=x.getFileName().toString().split("\\.")[0].split("_")[0].replaceAll("^(0+)","");
-            String tileY=x.getFileName().toString().split("\\.")[0].split("_")[1].replaceAll("^(0+)","");
+            int tmpY = Integer.valueOf(x.getFileName().toString().split("\\.")[0].split("_")[1].replaceAll("^(0+)", ""));
+            String tileY = String.valueOf(tmpY);
             String tmpPath=targetPath;
             if(!tmpPath.endsWith("/")){
                 tmpPath+="/";
@@ -45,7 +46,6 @@ public class MoveToNewDir {
                 System.out.println(filePath.toString()+"已存在");
             }
         });
-
     }
     public static void mkXYdir(String newPath){
         if(Files.notExists(Paths.get(URI.create(newPath)))){
