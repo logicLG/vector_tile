@@ -1,9 +1,6 @@
-package com.zju.edu;
+package edu.zju.gis;
 
-import org.json.JSONArray;
-import org.junit.Assert;
 import org.junit.Test;
-import util.MoveToNewDir;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,11 +9,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import static com.zju.edu.ReadVector.getXYZAndContentfromPbf;
-import static org.junit.Assert.*;
 
 public class ReadVectorTest {
 
@@ -44,7 +36,7 @@ public class ReadVectorTest {
 
     @Test
     public void getXYZAndContentfromPbf2() throws IOException {
-        getXYZAndContentfromPbf("/Users/LG/Documents/pratice/geoserver-2.13.4/data_dir/gwc/vector_tiles_lk_fine/6/105/44.pbf");
+        ReadVector.getXYZAndContentfromPbf("/Users/LG/Documents/pratice/geoserver-2.13.4/data_dir/gwc/vector_tiles_lk_fine/6/105/44.pbf");
     }
 
 }

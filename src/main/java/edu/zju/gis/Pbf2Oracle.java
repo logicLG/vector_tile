@@ -1,17 +1,15 @@
-package com.zju.edu;
+package edu.zju.gis;
 
-import java.io.*;
-import java.sql.*;
-import java.util.HashMap;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Pbf2Oracle {
     public static void insert2pbfxy(Map<String, List<String>> pbfAndFeature, Connection conn) {
         try{
-            String sql = "insert into TILE_MAP_2019(gridID,content) values(?,?)";
+            String sql = "insert into TILE_MAP_2019_2(ID,content) values(?,?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             conn.setAutoCommit(false);
             pbfAndFeature.forEach((key, value) -> {
@@ -27,6 +25,7 @@ public class Pbf2Oracle {
                                 stmt.addBatch();
                                 stmt.executeBatch();
                                 sb = new StringBuilder();
+                                System.out.println("截断数据");
                             } catch (SQLException e) {
                                 e.printStackTrace();
                             }

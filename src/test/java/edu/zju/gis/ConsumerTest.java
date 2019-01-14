@@ -1,12 +1,10 @@
-package com.zju.edu;
+package edu.zju.gis;
 
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
-
-import static org.junit.Assert.*;
 
 public class ConsumerTest {
 
