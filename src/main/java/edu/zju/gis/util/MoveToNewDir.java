@@ -22,13 +22,12 @@ public class MoveToNewDir {
             String tileZ=null;
             for(String item : fileNames){
                 if(item.contains("EPSG")) {
-                    tileZ = String.valueOf((Integer.valueOf(item.split("_")[2].replaceAll("^(0+)", "")) + 1));
+                    tileZ = String.valueOf(Integer.valueOf(item.split("_")[2].replaceAll("^(0+)", "")) + 1);
                     break;
                 }
             }
             String tileX=x.getFileName().toString().split("\\.")[0].split("_")[0].replaceAll("^(0+)","");
-            int tmpY = Integer.valueOf(x.getFileName().toString().split("\\.")[0].split("_")[1].replaceAll("^(0+)", ""));
-            String tileY = String.valueOf(tmpY);
+            String tileY = x.getFileName().toString().split("\\.")[0].split("_")[1].replaceAll("^(0+)", "");
             String tmpPath=targetPath;
             if(!tmpPath.endsWith("/")){
                 tmpPath+="/";

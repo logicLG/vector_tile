@@ -11,22 +11,19 @@ import java.util.Map;
 
 public class ReadVector {
     public static Map<String, JSONArray> getXYZAndContentfromPbf(String path) {
-        String[] fileNames = path.split(File.separator);
-        String z = fileNames[fileNames.length - 3];
-        String x = fileNames[fileNames.length - 2];
-        String y = fileNames[fileNames.length - 1].split("\\.")[0];
-
-//        for(String item : fileNames){
-//            if(item.contains("EPSG")) {
-//                z = item.split("_")[2].replaceAll("^(0+)", "");
-//                break;
-//            }
-//        }
+        String[] fileNames = path.split("/");
+        String z = null;
+        for (String item : fileNames) {
+            if (item.contains("EPSG")) {
+                z = item.split("_")[2].replaceAll("^(0+)", "");
+                break;
+            }
+        }
+        z = String.valueOf(Integer.valueOf(z) + 1);
         File file = new File(path);
-//        String fileName=file.getName();
-//        String x=fileName.split("\\.")[0].split("_")[0].replaceAll("^(0+)", "");
-//        String y=fileName.split("\\.")[0].split("_")[1].replaceAll("^(0+)", "");
-
+        String fileName = file.getName();
+        String x = fileName.split("\\.")[0].split("_")[0].replaceAll("^(0+)", "");
+        String y = fileName.split("\\.")[0].split("_")[1].replaceAll("^(0+)", "");
         String key = z + "_" + x + "_" + y;
         InputStream is = null;
         JSONArray jsonArray = new JSONArray();
