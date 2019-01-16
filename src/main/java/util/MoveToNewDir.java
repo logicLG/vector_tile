@@ -23,7 +23,7 @@ public class MoveToNewDir {
             String tileZ=null;
             for(String item : fileNames){
                 if(item.contains("EPSG")) {
-                    tileZ = item.split("_")[2].replaceAll("^(0+)", "");
+                    tileZ = String.valueOf(Integer.valueOf(item.split("_")[2].replaceAll("^(0+)", "")) + 1);
                     break;
                 }
             }

@@ -29,8 +29,8 @@ public class ReadVectorTest {
 
     @Test
     public void getXYZAndContentfromPbf() throws IOException {
-        String sourcePath="file:///Users/LG/Documents/pratice/geoserver-2.13.4/data_dir/gwc/lk1-0-7";
-        String targetPath="file:///Users/LG/Documents/pratice/geoserver-2.13.4/data_dir/gwc/vector_tiles_lk_fine";
+        String sourcePath = "file:///Users/LG/Documents/pratice/geoserver-2.13.4/data_dir/gwc/vector_lk_noID";
+        String targetPath = "file:///Users/LG/Documents/pratice/geoserver-2.13.4/data_dir/gwc/vector_tiles_lk_fine_noID";
         MoveToNewDir.moveVectorTile(sourcePath,targetPath);
     }
     @Test

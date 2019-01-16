@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.*;
 
 public class ReadVector {
-    public static Map<String,JSONArray>  getXYZAndContentfromPbf(String path,String layerName){
+    public static Map<String, JSONArray> getXYZAndContentfromPbf(String path) {
         String[] fileNames=path.split("/");
         String z=null;
         for(String item : fileNames){
@@ -17,6 +17,7 @@ public class ReadVector {
                 break;
             }
         }
+        z = String.valueOf(Integer.valueOf(z) + 1);
         File file=new File(path);
         String fileName=file.getName();
         String x=fileName.split("\\.")[0].split("_")[0].replaceAll("^(0+)", "");
@@ -28,6 +29,10 @@ public class ReadVector {
             is = new FileInputStream(file);
             byte[] encoded = toBytes(is);
             VectorTileDecoder d = new VectorTileDecoder();
+            String layerName = null;
+            if (!d.decode(encoded).getLayerNames().isEmpty()) {
+                layerName = d.decode(encoded).getLayerNames().iterator().next();
+            }
             List<VectorTileDecoder.Feature> features = d.decode(encoded, layerName).asList();
             for(VectorTileDecoder.Feature feature: features){
                 JSONObject jsonObject=new JSONObject(feature.getAttributes());
